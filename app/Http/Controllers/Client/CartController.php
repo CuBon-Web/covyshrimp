@@ -12,9 +12,42 @@ use Mail;
 use App\Mail\DemoMail;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use App\models\website\Setting;
 
 class CartController extends Controller
 {
+    private function getNotificationEmails()
+    {
+        $setting = Setting::first(['email']);
+        if (!$setting || empty($setting->email)) {
+            return [];
+        }
+
+        return collect(explode(',', (string)$setting->email))
+            ->map(function ($email) {
+                return trim($email);
+            })
+            ->filter(function ($email) {
+                return $email !== '' && filter_var($email, FILTER_VALIDATE_EMAIL);
+            })
+            ->values()
+            ->all();
+    }
+
+    private function sendBillNotificationMail(Bill $bill, array $cart)
+    {
+        $emails = $this->getNotificationEmails();
+        if (empty($emails)) {
+            Log::warning('Order notification skipped: settings.email is empty or invalid', [
+                'code_bill' => $bill->code_bill,
+            ]);
+            return;
+        }
+
+        $data = ['cus' => $bill, 'bill' => $cart];
+        Mail::to($emails)->send(new DemoMail($data));
+    }
+
     private function getCartLinePrice(array $item)
     {
         if ((int)($item['status_variant'] ?? 0) === 1) {
@@ -122,6 +155,8 @@ class CartController extends Controller
             $bill->statu = 1;
             $bill->save();
             $this->reduceProductQtyByBill($bill);
+            $billDetails = BillDetail::where('code_bill', $bill->code_bill)->get()->toArray();
+            $this->sendBillNotificationMail($bill, $billDetails);
         }
         return $bill;
     }
@@ -178,8 +213,7 @@ class CartController extends Controller
 
                 $this->reduceProductQtyByBill($query);
                 DB::commit();
-                $data = ['cus' => $query,'bill'=>$cart];
-                Mail::to('muadogo.vn@gmail.com')->send(new DemoMail($data));
+                $this->sendBillNotificationMail($query, $cart);
                 $request->session()->forget('cart');
                 return view('cart.orderSuccess');
 			} catch (\Throwable $e) {
