@@ -1,0 +1,488 @@
+@import "material-tokens";
+
+body {
+  background: $crm-bg;
+  font-family: $crm-font-family;
+  color: $crm-text-primary;
+  font-size: 13px;
+  overflow-x: hidden;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+.wrapper,
+.main-panel,
+.content {
+  background: $crm-bg;
+  overflow-x: hidden;
+}
+
+.crm-dashboard-shell {
+  overflow-x: hidden;
+}
+
+.card {
+  border: 1px solid $crm-border;
+  border-radius: $crm-radius-md;
+  box-shadow: $crm-shadow-sm;
+  background: $crm-surface;
+  overflow: hidden;
+}
+
+.card .card-body {
+  padding: 14px 16px;
+}
+
+.card-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: $crm-text-primary;
+  margin-bottom: 6px;
+}
+
+.card-description {
+  color: $crm-text-secondary;
+}
+
+.sidebar {
+  background: linear-gradient(180deg, #10172b 0%, #18223f 100%) !important;
+  box-shadow: $crm-shadow-lg;
+}
+
+.sidebar .logo .simple-text,
+.sidebar .nav p,
+.sidebar .nav i {
+  color: #dce3ff !important;
+}
+
+.sidebar .logo {
+  padding: 14px 16px 12px !important;
+}
+
+.sidebar .nav li > a {
+  margin: 3px 10px;
+  padding: 9px 12px !important;
+}
+
+.sidebar .nav li.active > a,
+.sidebar .nav li > a:hover {
+  background: rgba(63, 81, 181, 0.2) !important;
+  border-radius: 10px;
+}
+
+.sidebar .nav li.active > a {
+  box-shadow: inset 0 0 0 1px rgba(168, 183, 255, 0.32);
+}
+
+.main-panel > .content {
+  margin: 10px 10px 0;
+  padding: 0;
+}
+
+.crm-dashboard-shell .crm-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  margin: 0 10px;
+  padding: 10px 12px;
+  border: 1px solid $crm-border;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(6px);
+}
+
+.table,
+.vs-table--tbody-table {
+  background: $crm-surface;
+  max-width: 100%;
+}
+
+.vs-table--thead th,
+.el-table th {
+  color: $crm-text-secondary;
+  font-weight: 600;
+  background: $crm-surface-soft;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.35px;
+}
+
+.vs-table--tbody tr td,
+.el-table td {
+  border-bottom: 1px solid $crm-border;
+  font-size: 13px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.vs-table--tbody tr:hover,
+.el-table__body tr:hover > td {
+  background: #f7f9ff !important;
+}
+
+.el-input__inner,
+.vs-inputx,
+.vs-con-input input,
+.vs-con-textarea textarea,
+.el-textarea__inner,
+.vs-select--input {
+  border-radius: $crm-radius-sm !important;
+  border: 1px solid $crm-border !important;
+  background: $crm-surface;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.el-input__inner:focus,
+.el-textarea__inner:focus,
+.vs-con-input input:focus,
+.vs-con-textarea textarea:focus {
+  border-color: $crm-primary !important;
+  box-shadow: 0 0 0 3px rgba(63, 81, 181, 0.12);
+}
+
+/* Dense smart form controls */
+.el-input__inner,
+.vs-con-input input,
+.vs-select--input,
+.el-select .el-input__inner {
+  min-height: 36px !important;
+  height: 36px !important;
+  line-height: 36px !important;
+  padding: 0 12px !important;
+  font-size: 13px;
+}
+
+.el-textarea__inner,
+.vs-con-textarea textarea {
+  min-height: 76px !important;
+  line-height: 1.45;
+  padding: 8px 12px !important;
+  font-size: 13px;
+  resize: vertical;
+}
+
+.vs-select {
+  width: 100%;
+}
+
+.vs-select--item,
+.el-select-dropdown__item {
+  font-size: 13px;
+  height: 34px;
+  line-height: 34px;
+}
+
+.el-form-item__label,
+.card .form-group label {
+  letter-spacing: 0.1px;
+}
+
+.el-button--primary,
+.vs-button-primary,
+.vs-button-filled {
+  background: $crm-primary !important;
+  border-color: $crm-primary !important;
+}
+
+.el-button,
+.vs-button {
+  min-height: 34px;
+  border-radius: 9px !important;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+.el-button--primary:hover,
+.el-button--primary:focus,
+.vs-button-primary:hover,
+.vs-button-filled:hover {
+  background: $crm-primary-strong !important;
+}
+
+.row.fixxed .saveButton {
+  position: sticky;
+  bottom: 14px;
+  z-index: 12;
+  border-radius: $crm-radius-md;
+  padding: 12px 16px;
+  box-shadow: $crm-shadow-md;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid $crm-border;
+}
+
+.row.fixxed .saveButton {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.dropLanguage {
+  margin-top: 10px;
+  padding: 12px;
+  border: 1px dashed $crm-border;
+  border-radius: $crm-radius-sm;
+  background: $crm-surface-soft;
+}
+
+.crm-page-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed $crm-border;
+}
+
+.crm-filter-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.crm-form-section {
+  border: 1px solid $crm-border;
+  border-radius: $crm-radius-sm;
+  padding: 10px;
+  margin-bottom: 10px;
+  background: $crm-surface;
+}
+
+.crm-auth-shell .full-page .content {
+  padding-top: 72px;
+}
+
+.crm-auth-shell .container {
+  max-width: 420px;
+}
+
+.crm-dashboard-shell .content > div > .row {
+  margin-bottom: 12px;
+}
+
+/* List pages */
+.card-body > .nav-link {
+  display: inline-flex;
+  margin-bottom: 10px;
+}
+
+.card-body > .nav-link .vs-button {
+  border-radius: 10px;
+  padding: 8px 12px;
+}
+
+.card-body .vs-con-input-label {
+  margin-bottom: 0px;
+}
+
+.card-body .vs-input {
+  max-width: 100%;
+}
+
+.table-responsive {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+img,
+video,
+iframe {
+  max-width: 100%;
+}
+
+.vs-pagination--ul {
+  margin-top: 12px;
+}
+
+/* Reusable list filter + bulk action UI */
+.crm-list-filter-bar {
+  margin-bottom: 8px;
+  padding: 8px 10px;
+  border: 1px solid #eef0f4;
+  border-radius: 8px;
+  background: #fbfcfe;
+}
+
+.crm-list-filter-row {
+  align-items: center;
+  margin-bottom: -6px;
+}
+
+.crm-list-filter-control {
+  width: 100%;
+  height: 34px;
+  font-size: 12px;
+  color: #4b5563;
+}
+
+.crm-list-filter-keyword .vs-con-input {
+  width: 100%;
+}
+
+.crm-list-filter-keyword .vs-inputx {
+  height: 34px !important;
+  border: 1px solid #ced4da !important;
+  border-radius: 0.25rem !important;
+  font-size: 12px;
+  padding-right: 10px !important;
+}
+
+.crm-list-filter-control:focus {
+  border-color: #7367f0;
+  box-shadow: 0 0 0 0.1rem rgba(115, 103, 240, 0.2);
+}
+
+.crm-list-filter-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+}
+
+.crm-list-filter-btn {
+  min-width: 76px;
+  height: 34px;
+  font-size: 12px;
+}
+
+.crm-list-bulk-toolbar {
+  margin: 6px 0 10px;
+  padding: 6px 10px;
+  border: 1px dashed #dbe1ea;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  background: #fff;
+}
+
+.crm-list-bulk-count {
+  font-size: 12px;
+  font-weight: 600;
+  color: #4b5563;
+}
+
+.crm-list-bulk-actions {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.crm-list-bulk-status-select {
+  min-width: 132px;
+  height: 34px;
+  font-size: 12px;
+}
+
+.crm-list-status-chip {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.crm-list-status-on {
+  color: #0f5132;
+  background: #d1e7dd;
+}
+
+.crm-list-status-off {
+  color: #842029;
+  background: #f8d7da;
+}
+
+/* Add/Edit form pages */
+.card .form-group label {
+  color: $crm-text-secondary;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+
+.card .form-group {
+  margin-bottom: 10px;
+}
+
+.card .form-group .el-button {
+  margin-top: 6px;
+}
+
+.fixxed .saveButton .vs-button,
+.fixxed .saveButton .el-button {
+  min-width: 124px;
+  border-radius: 10px;
+}
+
+.el-dialog {
+  border-radius: 14px !important;
+  overflow: hidden;
+}
+
+.el-dialog__header {
+  border-bottom: 1px solid $crm-border;
+  padding: 12px 16px;
+}
+
+.el-dialog__body {
+  padding: 14px 16px;
+}
+
+.el-dialog__footer {
+  border-top: 1px solid $crm-border;
+  padding: 10px 16px;
+}
+
+.el-tag {
+  border-radius: 999px;
+}
+
+.el-pagination button,
+.el-pagination .el-pager li {
+  min-width: 28px;
+  height: 28px;
+  line-height: 28px;
+  border-radius: 7px;
+}
+
+@media (max-width: 991px) {
+  .card .card-body {
+    padding: 12px;
+  }
+
+  .main-panel > .content {
+    margin: 8px 8px 0;
+  }
+
+  .crm-dashboard-shell .crm-topbar {
+    margin: 0 8px;
+    padding: 8px 10px;
+  }
+
+  .card-body .vs-input {
+    max-width: 100%;
+  }
+
+  .crm-list-filter-actions {
+    justify-content: space-between;
+  }
+
+  .crm-list-bulk-toolbar {
+    align-items: flex-start;
+  }
+}
+
+/* Keep settings card visible while editing long forms */
+@media (min-width: 992px) {
+  .col-md-4.grid-margin.stretch-card > .card {
+    position: sticky;
+    top: 84px;
+  }
+}
