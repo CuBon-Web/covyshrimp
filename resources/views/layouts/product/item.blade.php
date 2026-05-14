@@ -76,15 +76,31 @@
             <p><a href="{{route('allListProCate',['danhmuc'=>$pro->cate->slug])}}">{{languageName($pro->cate->name)}}</a></p>
         @endif
         @if (!is_null($variantMinPrice) && !is_null($variantMaxPrice))
+            @if ($variantMinPrice > 0 || $variantMaxPrice > 0 || $originalPrice > 0)
             <p class="price">
-                {{number_format($variantMinPrice)}}₫ - {{number_format($variantMaxPrice)}}₫
-                <del>{{number_format($originalPrice)}}₫</del>
+                @if ($variantMinPrice > 0 && $variantMaxPrice > 0)
+                    {{number_format($variantMinPrice)}}₫ - {{number_format($variantMaxPrice)}}₫
+                @elseif ($variantMinPrice > 0)
+                    {{number_format($variantMinPrice)}}₫
+                @elseif ($variantMaxPrice > 0)
+                    {{number_format($variantMaxPrice)}}₫
+                @endif
+                @if ($originalPrice > 0)
+                    <del>{{number_format($originalPrice)}}₫</del>
+                @endif
             </p>
+            @endif
         @else
+            @if ($salePrice > 0 || $originalPrice > 0)
             <p class="price">
-                {{number_format($salePrice)}}₫
-                <del>{{number_format($originalPrice)}}₫</del>
+                @if ($salePrice > 0)
+                    {{number_format($salePrice)}}₫
+                @endif
+                @if ($originalPrice > 0)
+                    <del>{{number_format($originalPrice)}}₫</del>
+                @endif
             </p>
+            @endif
         @endif
     </div>
     <span class="for-border"></span>
