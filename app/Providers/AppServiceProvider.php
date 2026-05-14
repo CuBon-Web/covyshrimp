@@ -11,6 +11,7 @@ use Cart,Auth;
 use App\models\PageContent;
 use Laravel\Dusk\DuskServiceProvider;
 use App\models\product\Category;
+use App\models\product\Product;
 use App\models\language\Language;
 use App\models\blog\BlogCategory;
 use App\models\ServiceCate;
@@ -57,25 +58,34 @@ class AppServiceProvider extends ServiceProvider
                 'typeCate' => function ($query) {
                     $query->with(['typetwo'])->where('status',1)->orderBy('id','DESC')->select('cate_id','id', 'name','avatar','slug','cate_slug');
                 },
-                'product' => function ($query) {
-                    $query->select([
-                            'id',
-                            'category',
-                            'name',
-                            'discount',
-                            'price',
-                            'images',
-                            'slug',
-                            'cate_slug',
-                            'type_slug',
-                            'status_variant',
-                        ])
-                        ->with(['cate:id,slug,name'])
-                        ->where('status', 1)
-                        ->orderBy('id', 'DESC')
-                        ->take(10);
-                },
             ])->where('status',1)->orderBy('id','ASC')->get(['id','name','imagehome','avatar','slug','content']);
+
+            $productHomeColumns = [
+                'id',
+                'category',
+                'name',
+                'discount',
+                'price',
+                'images',
+                'slug',
+                'cate_slug',
+                'type_slug',
+                'status_variant',
+            ];
+            foreach ($categories as $category) {
+                $category->setRelation(
+                    'product',
+                    Product::query()
+                        ->select($productHomeColumns)
+                        ->where('category', $category->id)
+                        ->where('status', 1)
+                        ->where('home_status', 1)
+                        ->with(['cate:id,slug,name'])
+                        ->orderBy('id', 'DESC')
+                        ->take(15)
+                        ->get()
+                );
+            }
 
             $products = $categories->pluck('product')->flatten();
             $this->attachVariantPriceRange($products);
