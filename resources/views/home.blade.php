@@ -305,7 +305,6 @@
    </div>
 </div>
 <!-- End Special Offer section section -->
-{{dd($categoryhome)}}
 @foreach ($categoryhome as $item)
 @if ($item->product->count() > 0)
 @php
